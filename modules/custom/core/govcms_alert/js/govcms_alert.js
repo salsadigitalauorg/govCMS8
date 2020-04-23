@@ -92,7 +92,7 @@
               }
 
               // Build the alert.
-              var $alert = $('<article role="article" data-alert-id="' + alert_item.alert_id + '" class="node node--type-alert"><div class="node__content"></div></article>');
+              var $alert = $('<article role="article" data-alert-id="' + alert_item.alert_id + '" class="node node--type-alert"><div class="container node__content"></div></article>');
               // Set alert type and priority.
               if ((typeof alert_item.alert_type !== 'undefined') && (alert_item.alert_type !== "")) {
                 $alert.attr('data-alert-type', alert_item.alert_type);
