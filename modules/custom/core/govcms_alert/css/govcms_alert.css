@@ -33,13 +33,13 @@
   padding-left: 2.5em;
 }
 #govcms-alerts article.node--type-alert.icon-none .node__content {
-  padding-left: 0;
+  padding-left: 12px;
 }
 #govcms-alerts article.node--type-alert:not(.icon-none) .node__content:before {
   display: block;
   content: ' ';
-  width: 24px;
-  height: 24px;
+  width: 1em;
+  height: 1em;
   position: absolute;
   left: .5em;
   top: 0.25em;
@@ -144,6 +144,7 @@
   -ms-transform: rotate(45deg);
   -o-transform: rotate(45deg);
   filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=0.5);
+  line-height: 1;
 }
 #govcms-alerts article.node--type-alert .govcms-alert-message time {
   float: left;
