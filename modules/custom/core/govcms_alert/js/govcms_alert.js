@@ -109,6 +109,9 @@
               // Set the icon.
               if ((typeof alert_item.icon !== 'undefined') && alert_item.icon !== false && alert_item.icon !== "") {
                 $alert.addClass('icon-' + alert_item.icon);
+                if (!$placeholder.hasClass('with-icons')) {
+                  $placeholder.addClass('with-icons');
+                }
               }
               else {
                 $alert.addClass('icon-none');

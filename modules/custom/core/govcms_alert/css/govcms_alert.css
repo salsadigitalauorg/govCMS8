@@ -76,10 +76,10 @@
 }
 #govcms-alerts article.node--type-alert .node__content .field {
   margin-right: 1.5em;
-  margin-left: 2em;
-}
-#govcms-alerts article.node--type-alert.icon-none .node__content .field {
   margin-left: 0;
+}
+#govcms-alerts.with-icons article.node--type-alert .node__content .field {
+  margin-left: 2em;
 }
 #govcms-alerts article.node--type-alert .govcms-alert-link {
   margin-top: 0;
