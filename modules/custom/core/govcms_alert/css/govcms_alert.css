@@ -116,7 +116,7 @@
   cursor: pointer;
   position: absolute;
   top: 0;
-  right: .8em;
+  right: .6em;
 }
 #govcms-alerts article.node--type-alert .node__content button.govcms-alert-close span {
   position: absolute;
