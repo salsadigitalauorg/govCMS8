@@ -45,38 +45,38 @@
   Drupal.behaviors.govcmsAlertsRestBlock = {
     attach: function (context, settings) {
       // Set alert text color.
-      $('#govcms-alerts article.node--type-alert', context).each(function (index, element) {
+      $('.govcms-alerts article.node--type-alert', context).each(function (index, element) {
         var color = element.style.backgroundColor;
         if (color) {
           var threshold = Math.sqrt(1.05 * 0.05) - 0.05;
           if (color.indexOf('rgb') >= 0) {
             color = color.replace(/rgb\(|\)|\s/gi, '').split(',');
           }
-          var element_class = 'alert-type--light';
+          var element_class = 'alert-contrast--light';
           if (getLuminance(color) > threshold) {
-            element_class = 'alert-type--dark';
+            element_class = 'alert-contrast--dark';
           }
         }
         $(element).addClass(element_class);
       });
 
       // Process the Close button of each alert.
-      $('#govcms-alerts article.node--type-alert button.govcms-alert-close', context).click(function (event) {
+      $('.govcms-alerts article.node--type-alert button.govcms-alert-close', context).click(function (event) {
         var alert_id = $(event.target).attr('data-alert-id');
         $.cookie('hide_alert_id_' + alert_id, true);
         $('article.node--type-alert[data-alert-id="' + alert_id + '"]').remove();
       });
 
       // Loads the alerts for REST endpoint.
-      $('#govcms-alerts:not(.processed)', context).once('govcms_alerts_load').each(function (index, element) {
-        var endpoint = $(element).attr('data-endpoint');
+      $('.govcms-alerts:not(.alerts-processed)', context).once('govcms_alerts_load').each(function (index, element) {
+        var endpoint = $(element).attr('data-alert-endpoint');
         if ((typeof endpoint == 'undefined') || !endpoint || endpoint.length === 0) {
           endpoint = '/govcms-alerts?_format=json';
         }
         $.getJSON(endpoint, function (response) {
           if (response.length) {
             var $placeholder = $(element);
-            $placeholder.html('').addClass('processed');
+            $placeholder.html('').addClass('alerts-processed');
             for (var i = 0, len = response.length; i < len; i++) {
               var alert_item = response[i];
               var alert_id = response[i].alert_id;
@@ -108,13 +108,13 @@
 
               // Set the icon.
               if ((typeof alert_item.icon !== 'undefined') && alert_item.icon !== false && alert_item.icon !== "") {
-                $alert.addClass('icon-' + alert_item.icon);
-                if (!$placeholder.hasClass('with-icons')) {
-                  $placeholder.addClass('with-icons');
+                $alert.addClass('alert-icon--' + alert_item.icon);
+                if (!$placeholder.hasClass('alerts-with-icons')) {
+                  $placeholder.addClass('alerts-with-icons');
                 }
               }
               else {
-                $alert.addClass('icon-none');
+                $alert.addClass('alert-icon--none');
               }
 
               // Sets the message.
@@ -134,7 +134,7 @@
                   .appendTo($alert.find('.node__content'));
               }
               else {
-                $alert.addClass('no-cta-link');
+                $alert.addClass('alert-cta-link--none');
               }
 
               // Generates the Close button.
